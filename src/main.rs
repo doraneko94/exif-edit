@@ -43,7 +43,7 @@ fn app() -> Html {
         <div>
             <input type="file" accept="image/jpeg,image/png,image/tiff" onchange={on_file_change} />
             { if let Some(file_size) = *file_size {
-                html! { <p>{ format!("File size: {:.2} KB", file_size as f64 / 1024.0) }</p> }
+                html! { <p>{ format!("File size: {:.2} KBです", file_size as f64 / 1024.0) }</p> }
             } else {
                 html! {}
             }}
