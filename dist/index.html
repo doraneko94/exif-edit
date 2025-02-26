@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Uploader</title>
+<link rel="modulepreload" href="/exif-edit-b37b99de02b6c333.js" crossorigin="anonymous" integrity="sha384-KwGU7ayaLeXJsu81kkeS6Jvr9AtVdPaLo2i8XRKametSeF+4DAGr94GOZIMcDraD"><link rel="preload" href="/exif-edit-b37b99de02b6c333_bg.wasm" crossorigin="anonymous" integrity="sha384-OVMybD2lXwLbK53v68edBSdGY+w4ZU+h4Pf34eyAnkM9USlkTJvOCa+ErwpJv0Lm" as="fetch" type="application/wasm"></head>
+<body>
+    <script type="module" src="./main.js"></script>
+
+<script type="module">
+import init, * as bindings from '/exif-edit-b37b99de02b6c333.js';
+const wasm = await init({ module_or_path: '/exif-edit-b37b99de02b6c333_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script></body>
+</html>
