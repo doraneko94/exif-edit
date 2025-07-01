@@ -482,7 +482,8 @@ pub fn exif_capture_info(props: &InfoProps) -> Html {
                             mode={AccordionMode::Dropdown}
                             input_ref={input_refs[0].clone()}
                             value={ev!(exif_capture_info.sensitivity_info.sensitivity_type, props)}
-                            on_func={sensitivity_type} />
+                            on_func={sensitivity_type}
+                            caution=true />
                         <Accordion<Vec<u16>>
                             name={ "ISO" }
                             lead={Some("カメラが設定したISO感度 (Exif 2.2以前で主流)")}
@@ -495,7 +496,8 @@ pub fn exif_capture_info(props: &InfoProps) -> Html {
                             lead={Some("カメラが設定したISO感度 (Exif 2.3以降で主流)")}
                             input_ref={input_refs[2].clone()}
                             value={ev!(exif_capture_info.sensitivity_info.iso_speed, props)}
-                            on_func={iso_speed} />
+                            on_func={iso_speed}
+                            caution=true />
                         <Accordion<u32>
                             name={ "StandardOutputSensitivity" }
                             lead={Some("標準出力感度")}
@@ -535,13 +537,15 @@ pub fn exif_capture_info(props: &InfoProps) -> Html {
                             lead={Some("Exif仕様のバージョン: 長さ 4")}
                             input_ref={input_refs[0].clone()}
                             value={ev!(exif_capture_info.encoding_metadata.exif_version, props)}
-                            on_func={exif_version} />
+                            on_func={exif_version}
+                            caution=true />
                         <Accordion<String>
                             name={ "FlashpixVersion" }
                             lead={Some("Flashpix規格バージョン: 長さ 4")}
                             input_ref={input_refs[1].clone()}
                             value={ev!(exif_capture_info.encoding_metadata.flashpix_version, props)}
-                            on_func={flashpix_version} />
+                            on_func={flashpix_version}
+                            caution=true />
                         <Accordion<u32>
                             name={ "ExifOffset" }
                             lead={Some("Exif IFD (画像情報) へのポインタ")}
@@ -563,7 +567,8 @@ pub fn exif_capture_info(props: &InfoProps) -> Html {
                             lead={Some("圧縮された1ピクセルあたりの平均ビット数")}
                             input_ref={input_refs[7].clone()}
                             value={ev!(exif_capture_info.encoding_metadata.compressed_bits_per_pixel, props)}
-                            on_func={compressed_bits_per_pixel} />
+                            on_func={compressed_bits_per_pixel}
+                            caution=true />
 
                         <Accordion<SensingMethod>
                             name={ "SensingMethod" }
@@ -856,7 +861,6 @@ pub fn accordion_components_configuration(props: &AccordionComponentsConfigurati
                         <span>{ "ComponentsConfiguration" }</span>
                         <small class="text-muted">{ "RGB/BGRなどのカラーチャネルの順序: 長さ 4" }</small>
                     </div>
-                    { "ComponentsConfiguration" }
                 </button>
             </h2>
             <div id={"ComponentsConfiguration"}
@@ -977,6 +981,10 @@ pub fn accordion_cfa_pattern(props: &AccordionCFAPatternProps) -> Html {
                     <div class="d-flex flex-column text-start w-100">
                         <span>{ "CFAPattern" }</span>
                         <small class="text-muted">{ "ベイヤー配列などのカラー配列パターン" }</small>
+                        <i
+                            class="bi bi-exclamation-triangle-fill text-warning ms-2"
+                            aria-hidden="true">
+                        </i>
                     </div>
                 </button>
             </h2>

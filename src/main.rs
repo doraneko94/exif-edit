@@ -60,6 +60,9 @@ fn app() -> Html {
     let show_error = use_state(|| None);
     let show_toast = use_state(|| None);
 
+    let final_img_url = use_state(|| None);
+    let final_img_ndt = use_state(|| None);
+
     let process_file = {
         let file_name = file_name.clone();
         let file_size = file_size.clone();
@@ -69,6 +72,8 @@ fn app() -> Html {
         let is_converting = is_converting.clone();
         let show_error = show_error.clone();
         let show_toast = show_toast.clone();
+        let final_img_url = final_img_url.clone();
+        let final_img_ndt = final_img_ndt.clone();
 
         Callback::from(move |file: web_sys::File| {
             let file_type = if file.name().to_lowercase().ends_with(".heic") {
@@ -85,6 +90,8 @@ fn app() -> Html {
             file_bytes.set(None);
             img_data_url.set(None);
             exif.set(None);
+            final_img_url.set(None);
+            final_img_ndt.set(None);
 
             let file_name = file_name.clone();
             let file_size = file_size.clone();
@@ -239,6 +246,22 @@ fn app() -> Html {
         })
     };
 
+    let on_show_final = {
+        let file_bytes = file_bytes.clone();
+        let exif = exif.clone();
+        let final_img_url = final_img_url.clone();
+        let final_img_ndt = final_img_ndt.clone();
+        Callback::from(move |_: MouseEvent| {
+            if let (Some(bytes), Some(eed)) = (file_bytes.as_ref(), exif.as_ref()) {
+                let mut bytes = bytes.clone();
+                if let Ok(()) = eed.metadata.write_to_vec(&mut bytes, FileExtension::JPEG) {
+                    final_img_url.set(Some(format!("data:image/jpeg;base64,{}", base64::engine::general_purpose::STANDARD.encode(&bytes))));
+                    final_img_ndt.set(Some(Local::now().naive_local()));
+                }
+            }
+        })
+    };
+
     let on_delete_all = {
         let exif = exif.clone();
         Callback::from(move |_: MouseEvent| {
@@ -349,9 +372,39 @@ fn app() -> Html {
                                 style="max-height: 50vh; width: auto;"
                             />
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 d-flex flex-column gap-3">
                             <button type="button" class="btn btn-primary w-100" onclick={on_download.clone()}>{ "編集後のファイルをダウンロード (JPEG)" }</button>
+                            <p class="my-0">{"↓スマートフォンの場合は、こちらで表示した画像を長押ししてダウンロードしてください。"}</p>
+                            <button type="button" class="btn btn-info w-100" onclick={on_show_final.clone()}>
+                            { if (*final_img_url).is_some() { "編集後の画像を再表示する" } else { "編集後の画像を表示する" } }
+                            </button>
                         </div>
+                        {
+                            if let Some(url) = (*final_img_url).clone() {
+                                html! {
+                                    <div class="card shadow-sm mb-3">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">{ "編集後の画像" }</h5>
+                                            { if let Some(ndt) = (*final_img_ndt).clone() {
+                                                html! { <p>{format!("最終更新: {}", ndt.format("%Y年%m月%d日 %H時%M分%S秒").to_string())}</p> }
+                                            } else {
+                                                html! {}
+                                            } }
+                                            
+                                            <p>{"※Exif情報を更新した場合は、再表示してください。"}</p>
+                                            <img
+                                                src={url}
+                                                alt="編集後の画像のプレビュー"
+                                                class="img-fluid rounded shadow-sm d-block mx-auto"
+                                                style="max-height: 50vh; width: auto;"
+                                            />
+                                        </div>
+                                    </div>
+                                }
+                            } else {
+                                html! {}
+                            }
+                        }
                         </>
                     }
                 } else {
@@ -386,7 +439,7 @@ fn app() -> Html {
                 <div class="mb-3">
                     <p>
                         <i class="bi bi-exclamation-triangle-fill text-warning ms-2" aria-hidden="true"></i>
-                        { ": 編集により、ファイルが破損する可能性あり" }
+                        { ": 編集によりファイルが破損しうる" }
                     </p>
                     <p>
                         <i class="bi bi-slash-circle-fill text-danger ms-2" aria-hidden="true"></i>
@@ -413,6 +466,14 @@ fn app() -> Html {
         <footer class="text-center text-muted mt-5 mb-2 small">
             <p class="mb-1">{ "© 2025 J-IMPACT. All rights reserved." }</p>
             <p class="mb-0">{ "本アプリは個人利用向けです。我々は、利用によるいかなる損害も責任を負いません。" }</p>
+            <a
+                href="https://github.com/doraneko94/exif-edit"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-muted text-decoration-none"
+            >
+            <i class="bi bi-github me-1"></i>{"GitHubでソースコードを見る"}
+            </a>
         </footer>
 
         <div class="accordion mt-4" id="footerAccordion">

@@ -71,7 +71,6 @@ pub fn accordion_thumbnail_offsets(props: &AccordionThumbnailOffsetsProps) -> Ht
                         <span>{ "ThumbnailOffsets" }</span>
                         <small class="text-muted">{ "サムネイル画像の先頭位置（バイトオフセット）" }</small>
                     </div>
-                    { "ThumbnailOffsets" }
                     <i class="bi bi-slash-circle-fill text-danger ms-2" aria-hidden="true"></i>
                 </button>
             </h2>

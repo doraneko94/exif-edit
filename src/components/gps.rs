@@ -428,13 +428,15 @@ pub fn gps_info(props: &InfoProps) -> Html {
                     lead={Some("GPSのバージョン: 長さ 4")}
                     input_ref={input_refs[22].clone()}
                     value={ev!(gps_info.location_info.gps_version_id, props)}
-                    on_func={gps_version_id} />
+                    on_func={gps_version_id}
+                    caution=true />
                 <Accordion<u32>
                     name={ "GPSInfo" }
                     lead={Some("Exifへのオフセットポインタ")}
                     input_ref={input_refs[23].clone()}
                     value={ev!(gps_info.location_info.gps_info, props)}
-                    on_func={gps_info} />
+                    on_func={gps_info}
+                    caution=true />
             </div>
             </div>
         </div>
