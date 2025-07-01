@@ -1,0 +1,8 @@
+0 = Unknown
+1 = Standard Output Sensitivity
+2 = Recommended Exposure Index
+3 = ISO Speed
+4 = Standard Output Sensitivity and Recommended Exposure Index
+5 = Standard Output Sensitivity and ISO Speed
+6 = Recommended Exposure Index and ISO Speed
+7 = Standard Output Sensitivity, Recommended Exposure Index and ISO Speed
