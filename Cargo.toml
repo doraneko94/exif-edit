@@ -12,7 +12,7 @@ gloo-utils = "0.2.0"
 gufo = "0.1.3"
 gufo-exif = "0.1.3"
 leaflet = "0.4.1"
-little_exif = { path = "../little_exif" }
+little_exif = { git = "https://github.com/doraneko94/little_exif" }
 num-rational = "0.4.2"
 num-traits = "0.2.19"
 png = "0.17.16"

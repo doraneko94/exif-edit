@@ -1120,6 +1120,7 @@ checksum = "23fb14cb19457329c82206317a5663005a4d404783dc74f4252769b0d5f42856"
 [[package]]
 name = "little_exif"
 version = "0.6.3"
+source = "git+https://github.com/doraneko94/little_exif#410cfc6220610caaff01fdf83ae3c993e441b1e4"
 dependencies = [
  "crc",
  "miniz_oxide",

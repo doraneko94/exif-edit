@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Uploader</title>
+    <title>JPEG/HEIC Exif情報編集ツール</title>
+    <meta name="description" content="JPEG・HEIC画像のExif情報を確認・編集できる高機能Webアプリです。" />
+    <meta name="author" content="Shuntaro Ohno (I-IMPACT)" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
     <link 
       rel="stylesheet" 
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
@@ -15,11 +19,16 @@
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" 
       crossorigin=""
     ></script>
+
     <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.3/dist/heic2any.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/exifr/dist/lite.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/piexifjs"></script>
+
+    <link rel="copy-file" data-trunk href="CNAME" />
     <link rel="copy-dir" data-trunk href="js" />
     <link rel="scss" data-trunk href="scss/style.scss" />
+    <link rel="copy-file" data-trunk href="static/favicon.ico" />
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -35,7 +44,5 @@
 
     <base href="/exif-edit/">
 </head>
-<body>
-    <script type="module" src="./main.js"></script>
-</body>
+<body class="bg-light"></body>
 </html>
