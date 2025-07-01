@@ -1,17 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Uploader</title>
-    <base href="/exif-edit/">
-<link rel="modulepreload" href="/exif-edit/exif-edit-e496c19b917962d.js" crossorigin="anonymous" integrity="sha384-7MexsUdFsbXtYuzSJuXS8eTmxd9Ows1lmhGTqPlZL/ViiEVkZESm4xsbOM1rTsgs"><link rel="preload" href="/exif-edit/exif-edit-e496c19b917962d_bg.wasm" crossorigin="anonymous" integrity="sha384-bSzLW0yikk/1E0iTHCSZjWBeI+y51ee1GuOTTOs0XuKQTJdTWCR10QGmIWB5PKdP" as="fetch" type="application/wasm"></head>
-<body>
-    <script type="module" src="./main.js"></script>
+    <title>JPEG/HEIC Exif情報編集ツール</title>
+    <meta name="description" content="JPEG・HEIC画像のExif情報を確認・編集できる高機能Webアプリです。" />
+    <meta name="author" content="Shuntaro Ohno (I-IMPACT)" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
+    <link 
+      rel="stylesheet" 
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
+      crossorigin="" 
+    />
+    <script 
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" 
+      crossorigin=""
+    ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.3/dist/heic2any.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/exifr/dist/lite.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/piexifjs"></script>
+
+    
+    
+    <link rel="stylesheet" href="/style-fdfd08de87b3baa5.css" integrity="sha384-loPtvlPnwpvFRhzp/wIENOBb2PN84kXs0a5uM62OVmuifCE1ST1aUW3xEzRrSC0b"/>
+    
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
+
+    <base href="/exif-edit/">
+<link rel="modulepreload" href="/exif-edit-77520085fb8197e1.js" crossorigin="anonymous" integrity="sha384-WJ96WFF37rUOpjZjqPlkrxtFoLXN7gbx4EJo8FafgqLC8PVDj8zBYp5CBxb2mARQ"><link rel="modulepreload" href="/snippets/exif-edit-9bacc30ad9f8dd48/js/heic_handler.js" crossorigin="anonymous" integrity="sha384-5mFJf2c0IMrEejhG70U0P5Yu1+EPzauPTE+3mBbapGMVhn/kNcnE/dVzfLeI9Rqy"><link rel="preload" href="/exif-edit-77520085fb8197e1_bg.wasm" crossorigin="anonymous" integrity="sha384-RlNmWhjHBhAZOnqco/y7s8UVsBRoULnFvBeY/RKlLXx3TON0c9D8uuGgcjPwtT3c" as="fetch" type="application/wasm"></head>
+<body class="bg-light">
 <script type="module">
-import init, * as bindings from '/exif-edit/exif-edit-e496c19b917962d.js';
-const wasm = await init({ module_or_path: '/exif-edit/exif-edit-e496c19b917962d_bg.wasm' });
+import init, * as bindings from '/exif-edit-77520085fb8197e1.js';
+const wasm = await init({ module_or_path: '/exif-edit-77520085fb8197e1_bg.wasm' });
 
 
 window.wasmBindings = bindings;

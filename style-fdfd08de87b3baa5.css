@@ -1,0 +1,56 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #f8f9fa;
+  font-size: 1rem;
+  color: #212529;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.map {
+  width: 100%;
+  min-height: 300px;
+  height: 50vh;
+  max-height: 80vh;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: white !important;
+  box-shadow: none !important;
+  color: inherit;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+.toast-body, .alert {
+  font-size: 0.95rem;
+}
+
+.overlay-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-tabs {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  white-space: nowrap !important;
+}
