@@ -281,6 +281,7 @@ pub fn gps_info(props: &InfoProps) -> Html {
     html! {
         <div>
             <div class="tab-content border border-top-0 p-3">
+            <p>{"※Androidのフォトから画像をアップロードした場合、プライバシー保護機能が働いて、位置情報が正しく読み込めない場合があります。"}</p>
             <div class="accordion">
                 <AccordionGPS
                     name={ "GPSLatitude / GPSLongitude" }
