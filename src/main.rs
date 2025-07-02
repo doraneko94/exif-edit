@@ -464,7 +464,7 @@ fn app() -> Html {
         } else { html! {} } }
 
         <footer class="text-center text-muted mt-5 mb-2 small">
-            <p class="mb-1">{ "© 2025 J-IMPACT. All rights reserved." }</p>
+            <p class="mb-1">{ "© 2025 "}<a href="https://j-impact.jp/">{"J-IMPACT"}</a>{". All rights reserved." }</p>
             <p class="mb-0">{ "本アプリは個人利用向けです。我々は、利用によるいかなる損害も責任を負いません。" }</p>
             <a
                 href="https://github.com/doraneko94/exif-edit"
